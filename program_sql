@@ -1,0 +1,84 @@
+<?php 
+session_start() ;
+$servername = "localhost";
+$username = "root";
+$password = "hello1234";
+$dbname = "MuleSoftDB1";
+
+// Create connection
+$conn = new mysqli($servername, $username,$password,$dbname);
+//Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}else {
+   // echo "Error creating database: " . $conn->error;
+}
+
+// Create database
+//$sql = "CREATE DATABASE MuleSoftDB1";
+//if ($conn->query($sql) === TRUE) {
+ // echo "Database created successfully";
+//} else {
+  //echo "Error creating database: " . $conn->error;
+//}
+
+//name, actor, actress, director, year of release
+$sql = "CREATE TABLE MOVIES2(movie_name varchar(20), actor varchar(20), actress varchar(20), year_of_release date, director varchar(20))";
+if ($conn->query($sql) === TRUE) {
+ // echo "Database created successfully";
+} else {
+  //echo "Error creating database: " . $conn->error;
+}
+
+$sql = "INSERT INTO MOVIES2 VALUES('Mungaru Male', 'Ganesh', 'Pooja Gandhi', '2006-12-29', 'Yograj Bhat')";
+if ($conn->query($sql) === TRUE) {
+  //echo "Database created successfully";
+} else {
+  //echo "Error creating database: " . $conn->error;
+}
+$sql = "INSERT INTO MOVIES2 VALUES('Titanic', 'Leonardo DiCaprio', 'Kate Winslet', '1997-12-17','james Cameron')";
+if ($conn->query($sql) === TRUE) {
+  //echo "Database created successfully";
+} else {
+  //echo "Error creating database: " . $conn->error;
+}
+$sql = "INSERT INTO MOVIES2 VALUES('Drishyam 2', 'Mohan Lal', 'Meena', '2021-02-19','Jeethu Joseph')";
+if ($conn->query($sql) === TRUE) {
+  //echo "Database created successfully";
+} else {
+  //echo "Error creating database: " . $conn->error;
+}
+$sql = "INSERT INTO MOVIES2 VALUES('Spider man 1', 'Tom', 'tommy', '2015-04-03','sam raimi')";
+if ($conn->query($sql) === TRUE) {
+  //echo "Database created successfully";
+} else {
+  //echo "Error creating database: " . $conn->error;
+}
+$sql = "INSERT INTO MOVIES2 VALUES('Chennai Express', 'Shah Rukh Khan', 'Deepika Padukone', '2013-08-08','rohit shetty')";
+if ($conn->query($sql) === TRUE) {
+  //echo "Database created successfully";
+} else {
+  //echo "Error creating database: " . $conn->error;
+}
+$sql = "INSERT INTO MOVIES2 values('Kirik Party', 'Rakshith Shetty', 'Rashmika Mandanna', '2018-12-30','rishab shetty')";
+if ($conn->query($sql) === TRUE) {
+  //echo "Database created successfully";
+} else {
+  //echo "Error creating database: " . $conn->error;
+}
+
+$sql = "SELECT * FROM MOVIES2";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo "Movie Name: " . $row["movie_name"]. " - Actor Name: " . $row["actor"]. "  " ."Actress Name: ". $row["actress"]." Year of release: ".$row["year_of_release"]." Director Name: ". $row["director"]."<br>";
+  }
+} else {
+  echo "0 results";
+}
+
+
+$conn->close();
+?>
